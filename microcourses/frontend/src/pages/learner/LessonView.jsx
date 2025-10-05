@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config/api';
 
 const LessonView = () => {
   const { lessonId } = useParams();
@@ -15,7 +16,7 @@ const LessonView = () => {
 
   const fetchLesson = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/courses/lessons/${lessonId}`);
+      const response = await axios.get(`${API_BASE_URL}/api/courses/lessons/${lessonId}`);
       setLesson(response.data);
     } catch (error) {
       console.error('Error fetching lesson:', error);
@@ -31,7 +32,7 @@ const LessonView = () => {
   const handleComplete = async () => {
     setCompleting(true);
     try {
-      const response = await axios.post(`http://localhost:5000/api/learner/complete/${lessonId}`);
+      const response = await axios.post(`${API_BASE_URL}/api/learner/complete/${lessonId}`);
       alert(response.data.message);
       if (response.data.certificate) {
         navigate('/progress');

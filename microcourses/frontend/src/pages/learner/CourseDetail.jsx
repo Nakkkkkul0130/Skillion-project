@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import { API_BASE_URL } from '../../config/api';
 
 const CourseDetail = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const CourseDetail = () => {
 
   const fetchCourse = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/courses/${id}`);
+      const response = await axios.get(`${API_BASE_URL}/api/courses/${id}`);
       setCourse(response.data);
     } catch (error) {
       console.error('Error fetching course:', error);
@@ -30,7 +31,7 @@ const CourseDetail = () => {
   const checkEnrollment = async () => {
     if (user) {
       try {
-        const response = await axios.get('http://localhost:5000/api/learner/progress');
+        const response = await axios.get(`${API_BASE_URL}/api/learner/progress`);
         const isEnrolled = response.data.progress.some(p => p.course._id === id);
         setEnrolled(isEnrolled);
       } catch (error) {
@@ -42,7 +43,7 @@ const CourseDetail = () => {
   const handleEnroll = async () => {
     setEnrolling(true);
     try {
-      await axios.post(`http://localhost:5000/api/learner/enroll/${id}`);
+      await axios.post(`${API_BASE_URL}/api/learner/enroll/${id}`);
       setEnrolled(true);
       alert('Successfully enrolled in the course!');
     } catch (error) {

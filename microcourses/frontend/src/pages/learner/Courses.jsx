@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config/api';
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -13,7 +14,7 @@ const Courses = () => {
   const fetchCourses = async () => {
     try {
       // Add showAll=true for testing to see all courses
-      const response = await axios.get('http://localhost:5000/api/courses?showAll=true');
+      const response = await axios.get(`${API_BASE_URL}/api/courses?showAll=true`);
       setCourses(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);

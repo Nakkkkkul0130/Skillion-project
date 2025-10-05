@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config/api';
 
 const CreatorDashboard = () => {
   const [courses, setCourses] = useState([]);
@@ -17,7 +18,7 @@ const CreatorDashboard = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/creator/dashboard');
+      const response = await axios.get(`${API_BASE_URL}/api/creator/dashboard`);
       setCourses(response.data.courses);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -29,7 +30,7 @@ const CreatorDashboard = () => {
   const handleCreateCourse = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/creator/courses', newCourse);
+      await axios.post(`${API_BASE_URL}/api/creator/courses`, newCourse);
       setNewCourse({ title: '', description: '', category: '' });
       setShowCreateForm(false);
       fetchCourses();
@@ -41,7 +42,7 @@ const CreatorDashboard = () => {
 
   const handleSubmitForReview = async (courseId) => {
     try {
-      await axios.patch(`http://localhost:5000/api/creator/courses/${courseId}/submit`);
+      await axios.patch(`${API_BASE_URL}/api/creator/courses/${courseId}/submit`);
       fetchCourses();
       alert('Course submitted for review!');
     } catch (error) {
@@ -192,7 +193,7 @@ const CourseActions = ({ course, onSubmitForReview }) => {
   const handleAddLesson = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/api/creator/courses/${course._id}/lessons`, newLesson);
+      await axios.post(`${API_BASE_URL}/api/creator/courses/${course._id}/lessons`, newLesson);
       setNewLesson({ title: '', content: '', videoUrl: '', order: course.lessons.length + 2 });
       setShowLessonForm(false);
       alert('Lesson added successfully!');

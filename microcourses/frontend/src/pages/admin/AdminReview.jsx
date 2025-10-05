@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config/api';
 
 const AdminReview = () => {
   const [pendingCreators, setPendingCreators] = useState([]);
@@ -14,8 +15,8 @@ const AdminReview = () => {
   const fetchPendingData = async () => {
     try {
       const [creatorsResponse, coursesResponse] = await Promise.all([
-        axios.get('http://localhost:5000/api/admin/creators/pending'),
-        axios.get('http://localhost:5000/api/admin/courses/pending')
+        axios.get(`${API_BASE_URL}/api/admin/creators/pending`),
+        axios.get(`${API_BASE_URL}/api/admin/courses/pending`)
       ]);
       
       setPendingCreators(creatorsResponse.data);
@@ -29,7 +30,7 @@ const AdminReview = () => {
 
   const handleCreatorStatus = async (userId, status) => {
     try {
-      await axios.patch(`http://localhost:5000/api/admin/creators/${userId}/status`, { status });
+      await axios.patch(`${API_BASE_URL}/api/admin/creators/${userId}/status`, { status });
       fetchPendingData();
       alert(`Creator ${status} successfully!`);
     } catch (error) {
@@ -39,7 +40,7 @@ const AdminReview = () => {
 
   const handleCourseStatus = async (courseId, status) => {
     try {
-      await axios.patch(`http://localhost:5000/api/admin/courses/${courseId}/status`, { status });
+      await axios.patch(`${API_BASE_URL}/api/admin/courses/${courseId}/status`, { status });
       fetchPendingData();
       alert(`Course ${status} successfully!`);
     } catch (error) {

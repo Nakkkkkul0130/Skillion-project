@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import { API_BASE_URL } from '../../config/api';
 
 const CreatorApply = () => {
   const { user, refreshUser } = useAuth();
@@ -18,7 +19,7 @@ const CreatorApply = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/creator/apply', formData);
+      await axios.post(`${API_BASE_URL}/api/creator/apply`, formData);
       // Update user context to reflect pending status
       const updatedUser = { ...user, creatorStatus: 'pending' };
       refreshUser(updatedUser);
