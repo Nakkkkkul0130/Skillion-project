@@ -14,7 +14,7 @@ const Courses = () => {
   const fetchCourses = async () => {
     try {
       // Add showAll=true for testing to see all courses
-      const response = await axios.get(`${API_BASE_URL}/api/courses?showAll=true`);
+      const response = await axios.get(`${API_BASE_URL}/api/courses`);
       setCourses(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);

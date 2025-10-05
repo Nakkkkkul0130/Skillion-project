@@ -193,13 +193,23 @@ const CourseActions = ({ course, onSubmitForReview }) => {
   const handleAddLesson = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_BASE_URL}/api/creator/courses/${course._id}/lessons`, newLesson);
-      setNewLesson({ title: '', content: '', videoUrl: '', order: course.lessons.length + 2 });
-      setShowLessonForm(false);
-      alert('Lesson added successfully!');
-      window.location.reload();
+      const response = await axios.post(`${API_BASE_URL}/api/creator/courses/${course._id}/lessons`, newLesson);
+      if (response.status === 201) {
+        setNewLesson({ title: '', content: '', videoUrl: '', order: course.lessons.length + 2 });
+        setShowLessonForm(false);
+        alert('Lesson added successfully!');
+        window.location.reload();
+      }
     } catch (error) {
-      alert(error.response?.data?.message || 'Failed to add lesson');
+      console.error('Add lesson error:', error);
+      if (error.response?.status === 201) {
+        setNewLesson({ title: '', content: '', videoUrl: '', order: course.lessons.length + 2 });
+        setShowLessonForm(false);
+        alert('Lesson added successfully!');
+        window.location.reload();
+      } else {
+        alert(error.response?.data?.message || 'Failed to add lesson');
+      }
     }
   };
 
