@@ -13,7 +13,6 @@ const contactRoutes = require('./routes/contact');
 
 const app = express();
 
-// Middleware
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL,
@@ -28,7 +27,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/creator', creatorRoutes);
@@ -36,24 +34,21 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/learner', learnerRoutes);
 app.use('/api/contact', contactRoutes);
 
-// Test route
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Backend is working!', timestamp: new Date() });
 });
 
-// MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log('✅ MongoDB connected successfully');
+    console.log('MongoDB connected successfully');
     console.log('Database:', mongoose.connection.name);
     createDefaultAdmin();
   })
   .catch(err => {
-    console.error('❌ MongoDB connection error:', err.message);
+    console.error('MongoDB connection error:', err.message);
     process.exit(1);
   });
 
-// Handle MongoDB connection events
 mongoose.connection.on('error', (err) => {
   console.error('MongoDB error:', err);
 });

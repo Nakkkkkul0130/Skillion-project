@@ -39,7 +39,6 @@ const ContactForm = () => {
       {success && (
         <div className="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 text-green-700 px-4 py-3 rounded-xl mb-6">
           <div className="flex items-center">
-            <span className="mr-2">✅</span>
             Message sent successfully! We'll get back to you soon.
           </div>
         </div>
@@ -105,9 +104,7 @@ const ContactForm = () => {
               Sending...
             </>
           ) : (
-            <>
-              📧 Send Message
-            </>
+            'Send Message'
           )}
         </button>
       </form>

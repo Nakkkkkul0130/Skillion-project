@@ -98,7 +98,7 @@ const AdminReview = () => {
                       <h3 className="text-lg font-semibold text-gray-900">{creator.name}</h3>
                       <p className="text-gray-600">{creator.email}</p>
                       {creator.creatorApplication?.phone && (
-                        <p className="text-gray-600">📱 {creator.creatorApplication.phone}</p>
+                        <p className="text-gray-600">Phone: {creator.creatorApplication.phone}</p>
                       )}
                       <p className="text-sm text-gray-500 mt-2">
                         Applied on: {new Date(creator.creatorApplication?.appliedAt || creator.updatedAt).toLocaleDateString()}
@@ -124,15 +124,15 @@ const AdminReview = () => {
                   {creator.creatorApplication && (
                     <div className="border-t pt-4 space-y-3">
                       <div>
-                        <h4 className="font-medium text-gray-900">🎯 Expertise:</h4>
+                        <h4 className="font-medium text-gray-900">Expertise:</h4>
                         <p className="text-gray-700">{creator.creatorApplication.expertise}</p>
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-900">💼 Experience:</h4>
+                        <h4 className="font-medium text-gray-900">Experience:</h4>
                         <p className="text-gray-700">{creator.creatorApplication.experience}</p>
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-900">💡 Motivation:</h4>
+                        <h4 className="font-medium text-gray-900">Motivation:</h4>
                         <p className="text-gray-700">{creator.creatorApplication.motivation}</p>
                       </div>
                     </div>

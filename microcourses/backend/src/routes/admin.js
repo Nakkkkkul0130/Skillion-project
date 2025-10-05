@@ -4,7 +4,6 @@ const User = require('../models/User');
 const Course = require('../models/Course');
 const router = express.Router();
 
-// Get pending creator applications
 router.get('/creators/pending', auth, requireRole(['admin']), async (req, res) => {
   try {
     const pendingCreators = await User.find({ creatorStatus: 'pending' });
@@ -14,10 +13,9 @@ router.get('/creators/pending', auth, requireRole(['admin']), async (req, res) =
   }
 });
 
-// Approve/reject creator application
 router.patch('/creators/:userId/status', auth, requireRole(['admin']), async (req, res) => {
   try {
-    const { status } = req.body; // 'approved' or 'rejected'
+    const { status } = req.body;
     const updateData = { creatorStatus: status };
     
     if (status === 'approved') {
@@ -34,7 +32,6 @@ router.patch('/creators/:userId/status', auth, requireRole(['admin']), async (re
   }
 });
 
-// Get courses pending review
 router.get('/courses/pending', auth, requireRole(['admin']), async (req, res) => {
   try {
     const courses = await Course.find({ status: 'pending' })
@@ -46,10 +43,9 @@ router.get('/courses/pending', auth, requireRole(['admin']), async (req, res) =>
   }
 });
 
-// Approve/reject course
 router.patch('/courses/:courseId/status', auth, requireRole(['admin']), async (req, res) => {
   try {
-    const { status } = req.body; // 'published' or 'rejected'
+    const { status } = req.body;
     const course = await Course.findByIdAndUpdate(
       req.params.courseId,
       { status },

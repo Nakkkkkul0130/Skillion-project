@@ -46,7 +46,6 @@ const Register = () => {
       <div className="max-w-lg w-full">
         <div className="card p-8 animate-fade-in">
           <div className="text-center mb-8">
-            <div className="text-4xl mb-4">🎆</div>
             <h2 className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent mb-2">
               Join MicroCourses
             </h2>
@@ -56,7 +55,6 @@ const Register = () => {
           {error && (
             <div className="bg-gradient-to-r from-red-50 to-red-100 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6 animate-slide-up">
               <div className="flex items-center">
-                <span className="mr-2">⚠️</span>
                 {error}
               </div>
             </div>
@@ -65,7 +63,7 @@ const Register = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-dark-700 mb-2">
-                👤 Full Name
+                Full Name
               </label>
               <input
                 type="text"
@@ -80,7 +78,7 @@ const Register = () => {
             
             <div>
               <label className="block text-sm font-semibold text-dark-700 mb-2">
-                📧 Email Address
+                Email Address
               </label>
               <input
                 type="email"
@@ -95,7 +93,7 @@ const Register = () => {
             
             <div>
               <label className="block text-sm font-semibold text-dark-700 mb-2">
-                🔒 Password
+                Password
               </label>
               <input
                 type="password"
@@ -110,7 +108,7 @@ const Register = () => {
             
             <div>
               <label className="block text-sm font-semibold text-dark-700 mb-4">
-                🎯 Choose Your Path:
+                Choose Your Path:
               </label>
               <div className="grid grid-cols-1 gap-4">
                 <label className={`card p-4 cursor-pointer transition-all duration-300 hover:scale-105 ${
@@ -127,7 +125,6 @@ const Register = () => {
                     className="sr-only"
                   />
                   <div className="flex items-center">
-                    <div className="text-2xl mr-4">🎓</div>
                     <div className="flex-1">
                       <div className="font-bold text-dark-800 text-lg">Learner</div>
                       <div className="text-dark-600">Discover amazing courses and expand your skills</div>
@@ -158,12 +155,11 @@ const Register = () => {
                     className="sr-only"
                   />
                   <div className="flex items-center">
-                    <div className="text-2xl mr-4">🎨</div>
                     <div className="flex-1">
                       <div className="font-bold text-dark-800 text-lg">Creator</div>
                       <div className="text-dark-600">Share your expertise and create courses</div>
                       <div className="text-xs text-secondary-600 mt-1 font-medium">
-                        ✨ Requires admin approval
+                        Requires admin approval
                       </div>
                     </div>
                     <div className={`w-5 h-5 rounded-full border-2 ${
@@ -191,10 +187,7 @@ const Register = () => {
                   Creating Account...
                 </>
               ) : (
-                <>
-                  <span className="mr-2">🚀</span>
-                  Create Account
-                </>
+                'Create Account'
               )}
             </button>
           </form>

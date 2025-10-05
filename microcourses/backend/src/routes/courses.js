@@ -4,7 +4,6 @@ const Course = require('../models/Course');
 const Lesson = require('../models/Lesson');
 const router = express.Router();
 
-// Get all published courses (or all courses if admin)
 router.get('/', async (req, res) => {
   try {
     const { showAll } = req.query;
@@ -19,7 +18,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get course by ID with lessons
 router.get('/:id', async (req, res) => {
   try {
     const course = await Course.findOne({ _id: req.params.id, status: 'published' })
@@ -36,7 +34,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Get lesson by ID
 router.get('/lessons/:lessonId', auth, async (req, res) => {
   try {
     const lesson = await Lesson.findById(req.params.lessonId).populate('course');
@@ -44,7 +41,6 @@ router.get('/lessons/:lessonId', auth, async (req, res) => {
       return res.status(404).json({ message: 'Lesson not found' });
     }
 
-    // Check if user is enrolled in the course
     const isEnrolled = lesson.course.enrolledStudents.includes(req.user._id);
     if (!isEnrolled) {
       return res.status(403).json({ message: 'Not enrolled in this course' });

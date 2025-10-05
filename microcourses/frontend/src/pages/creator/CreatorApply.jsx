@@ -24,7 +24,7 @@ const CreatorApply = () => {
       const updatedUser = { ...user, creatorStatus: 'pending' };
       refreshUser(updatedUser);
       
-      alert('🎉 Creator application submitted successfully! Our admin team will review your application and notify you once approved.');
+      alert('Creator application submitted successfully! Our admin team will review your application and notify you once approved.');
       navigate('/');
     } catch (error) {
       alert(error.response?.data?.message || 'Application failed');
@@ -58,7 +58,6 @@ const CreatorApply = () => {
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="card p-6">
           <div className="text-center">
-            <div className="text-6xl mb-4">⏳</div>
             <h2 className="text-2xl font-bold text-dark-800 mb-4">Application Under Review</h2>
             <p className="text-dark-600 mb-6">
               Your creator application is pending approval. Our admin team will review your application and get back to you soon.
@@ -79,7 +78,6 @@ const CreatorApply = () => {
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="card p-8">
         <div className="text-center mb-8">
-          <div className="text-6xl mb-4">🎨</div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent mb-4">
             Complete Your Creator Application
           </h1>
@@ -131,7 +129,7 @@ const CreatorApply = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-sm font-semibold text-dark-700 mb-2">
-              📱 Phone Number
+              Phone Number
             </label>
             <input
               type="tel"
@@ -146,7 +144,7 @@ const CreatorApply = () => {
           
           <div>
             <label className="block text-sm font-semibold text-dark-700 mb-2">
-              🎯 Area of Expertise
+              Area of Expertise
             </label>
             <input
               type="text"
@@ -161,7 +159,7 @@ const CreatorApply = () => {
           
           <div>
             <label className="block text-sm font-semibold text-dark-700 mb-2">
-              💼 Teaching/Professional Experience
+              Teaching/Professional Experience
             </label>
             <textarea
               name="experience"
@@ -176,7 +174,7 @@ const CreatorApply = () => {
           
           <div>
             <label className="block text-sm font-semibold text-dark-700 mb-2">
-              💡 Why do you want to become a creator?
+              Why do you want to become a creator?
             </label>
             <textarea
               name="motivation"
@@ -201,10 +199,7 @@ const CreatorApply = () => {
                   Submitting...
                 </>
               ) : (
-                <>
-                  <span className="mr-2">🚀</span>
-                  Submit Application
-                </>
+                'Submit Application'
               )}
             </button>
           </div>

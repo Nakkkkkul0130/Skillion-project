@@ -104,7 +104,7 @@ const Progress = () => {
             {certificates.map((cert) => (
               <div key={cert._id} className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg shadow-md p-6 border border-blue-200">
                 <div className="text-center">
-                  <div className="text-3xl mb-4">🏆</div>
+                  <div className="text-lg font-semibold mb-4">Certificate</div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     {cert.courseId.title}
                   </h3>

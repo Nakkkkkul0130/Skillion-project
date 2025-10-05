@@ -5,7 +5,6 @@ const Course = require('../models/Course');
 const Lesson = require('../models/Lesson');
 const router = express.Router();
 
-// Apply to become creator
 router.post('/apply', auth, async (req, res) => {
   try {
     if (req.user.role === 'creator') {
@@ -31,7 +30,6 @@ router.post('/apply', auth, async (req, res) => {
   }
 });
 
-// Get creator dashboard data
 router.get('/dashboard', auth, requireRole(['creator']), async (req, res) => {
   try {
     const courses = await Course.find({ creator: req.user._id }).populate('lessons');
@@ -41,7 +39,6 @@ router.get('/dashboard', auth, requireRole(['creator']), async (req, res) => {
   }
 });
 
-// Create course
 router.post('/courses', auth, requireRole(['creator']), async (req, res) => {
   try {
     const { title, description, category } = req.body;
@@ -58,7 +55,6 @@ router.post('/courses', auth, requireRole(['creator']), async (req, res) => {
   }
 });
 
-// Add lesson to course
 router.post('/courses/:courseId/lessons', auth, requireRole(['creator']), async (req, res) => {
   try {
     const { title, content, videoUrl, order } = req.body;
@@ -75,7 +71,7 @@ router.post('/courses/:courseId/lessons', auth, requireRole(['creator']), async 
       videoUrl,
       order,
       course: courseId,
-      transcript: `Auto-generated transcript for: ${title}` // Simple auto-transcript
+      transcript: `Auto-generated transcript for: ${title}`
     });
 
     await lesson.save();
@@ -92,7 +88,6 @@ router.post('/courses/:courseId/lessons', auth, requireRole(['creator']), async 
   }
 });
 
-// Submit course for review
 router.patch('/courses/:courseId/submit', auth, requireRole(['creator']), async (req, res) => {
   try {
     const course = await Course.findOneAndUpdate(
